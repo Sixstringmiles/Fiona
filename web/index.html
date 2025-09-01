@@ -1,0 +1,35 @@
+# ==============================
+# File: web/index.html
+# ==============================
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>VRM Voice Avatar</title>
+    <style>
+      html, body { margin: 0; height: 100%; background: #0a0a0a; color: #ddd; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica; }
+      #toolbar { position: absolute; top: 10px; left: 10px; z-index: 10; display: flex; gap: 8px; align-items: center; }
+      button { background: #1e1e1e; color: #e5e5e5; border: 1px solid #333; border-radius: 10px; padding: 8px 12px; cursor: pointer; }
+      button:hover { background: #2a2a2a; }
+      #subtitle { position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%); max-width: 80%; text-align: center; padding: 8px 12px; background: rgba(0,0,0,0.45); border-radius: 12px; }
+      canvas { display: block; }
+      input[type=file] { color: #ddd; }
+      .badge { padding: 4px 8px; background:#222; border-radius: 8px; font-size: 12px; }
+    </style>
+    <!-- three.js & loaders (CDN for starter; consider bundling locally for production) -->
+    <script src="https://unpkg.com/three@0.160.0/build/three.min.js"></script>
+    <script src="https://unpkg.com/three@0.160.0/examples/js/loaders/GLTFLoader.js"></script>
+    <script src="https://unpkg.com/@pixiv/three-vrm@2.0.3/lib/three-vrm.min.js"></script>
+  </head>
+  <body>
+    <div id="toolbar">
+      <button onclick="window.pywebview?.api.start_listening()">Start 🎤</button>
+      <button onclick="window.pywebview?.api.stop_listening()">Stop 📴</button>
+      <label class="badge">Load VRM <input type="file" id="vrmfile" accept=".vrm" /></label>
+      <input id="text" placeholder="Type and press Enter…" style="padding:8px;border-radius:10px;border:1px solid #333;background:#111;color:#eee;width:360px" />
+    </div>
+    <div id="subtitle"></div>
+    <script src="app.js"></script>
+  </body>
+</html>

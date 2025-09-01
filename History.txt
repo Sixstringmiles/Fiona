@@ -1,0 +1,37 @@
+# Project: VRM Voice Avatar (Python)
+#
+# Intitial ChatGPT 5 Prompt:
+
+I want to create a well-structure and documented Python Program that connects to the Chat GPT API and renders an on-screen avatar that is animated as it speaks back the responses it receives from the Chat GPT API in response to the user's voice to text input. The software should be designed in a modular fashion using only publicly available well-documented and supported libraries. On-screen avatar should support VRM Vtube models for the on-screen representation with animated eyes, expressions, mouth, hair, hands and upper body. Animation should be smooth and non-blocking for voice to text functions.
+
+#
+# A modular, well-documented Python reference app that:
+# 1) Listens to the user's microphone (offline STT via Vosk)
+# 2) Sends recognized text to the OpenAI Chat Completions API
+# 3) Speaks the AI response with low-latency streaming TTS (Piper)
+# 4) Renders a VRM avatar (in a pywebview-embedded webpage using three.js + three-vrm)
+# 5) Drives live facial/mouth animation in sync with speech while keeping STT non-blocking
+#
+# ──────────────────────────────────────────────────────────────────────────────
+# Folder layout
+# ├─ src/
+# │  ├─ main.py                 # Orchestrator (async event loop)
+# │  ├─ config.py               # Config/env and constants
+# │  ├─ chat_client.py          # OpenAI Chat API wrapper
+# │  ├─ stt_vosk.py             # Microphone -> text (Vosk)
+# │  ├─ tts_piper.py            # Text -> streaming audio (Piper) + amplitude callbacks
+# │  ├─ audio_viseme.py         # Amplitude → viseme/mouth curve helpers
+# │  ├─ ui_webview.py           # pywebview window + Python<->JS bridge
+# │  └─ utils.py                # Shared helpers (logging, threading, etc.)
+# ├─ web/
+# │  ├─ index.html              # three.js + three-vrm scene, VRM loader, bridge hooks
+# │  └─ app.js                  # Avatar control code (mouth/eyes/blink/breath)
+# ├─ requirements.txt
+# └─ README.md
+#
+# Notes
+# - This is a reference implementation using public, well-documented libs.
+# - three-vrm handles VRM 0.x/1.0 expression/bones; we animate via JS bridge.
+# - For best stability, bundle three.js + GLTFLoader + three-vrm locally later; CDN is used initially.
+# - STT, Chat, TTS, and UI run concurrently; speech animation uses audio RMS/AGC-based viseme drive.
+# - The code below is a ready-to-run baseline; see README for setup.

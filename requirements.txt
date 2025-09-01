@@ -1,0 +1,32 @@
+# ==============================
+# File: requirements.txt
+# ==============================
+# Core
+openai>=1.30.0
+pywebview>=4.4.1
+PySide6>=6.7.1
+
+
+# Audio I/O
+sounddevice>=0.4.6
+numpy>=1.26.4
+
+
+# STT
+vosk>=0.3.45
+
+
+# TTS
+piper-tts>=1.3.0
+
+
+# Emotion (open-source classifier)
+transformers>=4.43.3
+huggingface-hub>=0.24.0
+# torch is required by transformers; install a CPU build if you don't have CUDA
+torch>=2.2.0
+
+
+# Utilities
+requests>=2.32.3
+tqdm>=4.66.4
